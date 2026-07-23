@@ -1,3 +1,21 @@
+# Ignore compiled files
 *.out
+*.exe
+a.out
+
+# Object files
 *.o
-/build/
+*.obj
+
+# Libraries
+*.so
+*.a
+*.dll
+
+# Build directories
+build/
+bin/
+cmake-build-*/
+
+# Logs
+*.log
