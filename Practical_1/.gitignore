@@ -1,5 +1,3 @@
-.BubbleSort
-.insertionsSort
-.mergeSort
-.QuickSort
-.SelectionSort
+*.out
+*.o
+/build/
