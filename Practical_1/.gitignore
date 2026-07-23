@@ -1,21 +1,18 @@
-# Ignore compiled files
-*.out
-*.exe
-a.out
+# Ignore all files without extension (executables like BubbleSort)
+*
 
-# Object files
-*.o
-*.obj
+# Allow folders
+!*/
 
-# Libraries
-*.so
-*.a
-*.dll
+# Allow source code
+!*.c++
+!*.cpp
 
-# Build directories
-build/
-bin/
-cmake-build-*/
+# Allow images
+!*.png
 
-# Logs
-*.log
+# Allow markdown
+!*.md
+
+# Allow gitignore itself
+!.gitignore
