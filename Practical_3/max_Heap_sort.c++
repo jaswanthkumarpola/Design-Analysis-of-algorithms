@@ -48,11 +48,11 @@ int main() {
     int data[] = {12, 11, 13, 5, 6, 7};
     int n = sizeof(data) / sizeof(data[0]);
     
-        cout << "Original array: ";
+    cout << "Original array: ";
     printArray(data, n);
     
     heapSort(data, n);
-        cout << "Sorted array:   ";
+    cout << "Sorted array:   ";
     printArray(data, n);
     
     return 0;
