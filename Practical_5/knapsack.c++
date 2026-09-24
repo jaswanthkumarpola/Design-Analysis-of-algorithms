@@ -1,50 +1,32 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
 
-int getMax(int a, int b) {
-    return (a > b) ? a : b;
-}
-int knapSack(int weight[], int value[], int capacity, int n, int** dp) {
-    if (n == 0 || capacity == 0) {
-        return 0;
-    }
-
-    if (dp[n][capacity] != -1) {
-        return dp[n][capacity];
-    }
-
-    if (weight[n - 1] > capacity) {
-        dp[n][capacity] = knapSack(weight, value, capacity, n - 1, dp);
-        return dp[n][capacity];
-    }
-
-    int include = value[n - 1] + knapSack(weight, value, capacity - weight[n - 1], n - 1, dp);
-    int exclude = knapSack(weight, value, capacity, n - 1, dp);
-    
-
-    dp[n][capacity] = getMax(include, exclude);
-    return dp[n][capacity];
-}
-
 int main() {
-    int weight[] = {18, 15, 10};
-    int value[] = {25, 24, 15};
-    int capacity = 20;
-    
-    int n = sizeof(weight) / sizeof(weight[0]);
+    int values[] = {60, 100, 120};
+    int weights[] = {10, 20, 30};
+    int W = 50; 
+    int n = 3;  
 
-    int** dp = new int*[n + 1];
+    int dp[4][51]; 
+
     for (int i = 0; i <= n; i++) {
-        dp[i] = new int[capacity + 1];
-        for (int j = 0; j <= capacity; j++) {
-            dp[i][j] = -1; 
+        for (int w = 0; w <= W; w++) {
+        
+            if (i == 0 || w == 0) {
+                dp[i][w] = 0;
+            } 
+            else if (weights[i - 1] <= w) {
+                int include_item = values[i - 1] + dp[i - 1][w - weights[i - 1]];
+                int exclude_item = dp[i - 1][w];
+                
+                dp[i][w] = (include_item > exclude_item) ? include_item : exclude_item;
+            } 
+            else {
+                dp[i][w] = dp[i - 1][w];
+            }
         }
     }
-    cout << knapSack(weight, value, capacity, n, dp) << "\n";
-    for (int i = 0; i <= n; i++) {
-        delete[] dp[i];
-    }
-    delete[] dp;
+    cout << "Maximum value in Knapsack = " << dp[n][W] << "\n";
 
     return 0;
 }
